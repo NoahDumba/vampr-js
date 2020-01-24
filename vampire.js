@@ -32,16 +32,18 @@ class Vampire {
   closestCommonAncestor(vampire) {
     if (this === vampire) {
       return this;
-    } else if (this.creator === null || vampire.creator === this) {
+    }
+    if (this.creator === null || vampire.creator === this) {
       return this;
-    } else if (vampire.creator === null || this.creator === vampire) {
+    }
+    if (vampire.creator === null || this.creator === vampire) {
       return vampire;
-    } else {
+    }
       let vamp1 = this;
       let vamp2 = vampire;
 
       while (vamp1.creator !== vamp2.creator) {
-        while (vamp1.numberOfVampiresFromOriginal !== vamp2.numberOfVampiresFromOriginal) {
+        while (vamp1.numberOfVampiresFromOriginal !== vamp2.numberOfVampiresFromOriginal) { // replace these loops with isMoreSenior and make the function recursive
 
           if (vamp1.numberOfVampiresFromOriginal > vamp2.numberOfVampiresFromOriginal) {
             vamp1 = vamp1.creator;
@@ -56,9 +58,7 @@ class Vampire {
         }
       }
       return vamp1.creator;
-    }
   }
 }
 
 module.exports = Vampire;
-
